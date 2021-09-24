@@ -4,8 +4,8 @@ const app = express();
 const cors = require("cors");
 const jwt=require('jsonwebtoken');
 const jwksClient=require('jwks-rsa');
-app.use(cors());
 require("dotenv").config();
+app.use(cors());
 app.use(express.json());
 
 
@@ -22,13 +22,15 @@ const {creatControllertest1
     ,getallControllertest1
 ,getoneControllertest1
 ,updateControllertest1
-,deleteControllertest1} =require('./controller/test1.controller')
+,deleteControllertest1
+,top2pricetest1} =require('./controller/test1.controller')
 
 app.post('/create-test1',creatControllertest1)
 app.get('/get-test1',getallControllertest1)
 app.get('/getone-test1/:id',getoneControllertest1)
 app.patch('/update-test1/:id',updateControllertest1)
 app.delete('/delete-test1/:id',deleteControllertest1)
+app.get('/top2test1',top2pricetest1,getallControllertest1)
  
    
 

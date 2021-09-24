@@ -24,7 +24,8 @@ const test1Schema =new mongoose.Schema({
     },image:[String]
     ,date:{
         type:Date,
-        default:Date.now()
+        default:Date.now(),
+        // select:false // don't show it to the user
     },startdate:[Date]
 })
 const test1Model = mongoose.model('test1',test1Schema)
