@@ -31,8 +31,9 @@ const {test1Model} = require("./test1.model")
       }
     }
 
-    if(process.argv[2]== '--import'){
+    if(process.argv[2]== '--import'){//nodemon models/test1-1.model.js --import
       importtest1()
-    }else if(process.argv[2]== '--delete'){
+    }else if(process.argv[2]== '--delete'){//nodemon models/test1-1.model.js --delete
       deletedatatest1()
     }
+console.log(process.argv);

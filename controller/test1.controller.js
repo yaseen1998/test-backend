@@ -16,6 +16,7 @@ const creatControllertest1=async(req,res)=>{
 }
 
 const getallControllertest1=async(req,res)=>{
+    console.log(req.query);
 
     try{
         const get1test1 = await test1Model.find();
