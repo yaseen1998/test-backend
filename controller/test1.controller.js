@@ -214,11 +214,38 @@ const features = new APIFeaturestest1(test1Model.find(),req.query)
         res.status(400).json({status:err,message:'fail'})
     }
 }
-
+const getcontrollerStats = async(req,res)=>{
+     try{
+         const stats = await test1Model.aggregate([
+             {
+             $match:{price:{$gte:4.5}}
+             },
+             {
+                 $group:{
+                    _id:null,
+                    avgprice:{$avg:'$price'},
+                    minprice:{$min : '$price'},
+                    maxprice:{$max : '$price'}
+                 }
+             }
+         ]);
+         res.status(200).json({
+            status:'sucess',
+            result:stats.length,
+            data:{
+                stats
+            }
+        })
+         
+     }catch(err){
+        res.status(400).json({status:err,message:'fail'})
+    }
+}
 
 module.exports={creatControllertest1
     ,getallControllertest1
     ,getoneControllertest1
     ,updateControllertest1
     ,deleteControllertest1
-    ,top2pricetest1}
+    ,top2pricetest1
+,getcontrollerStats}

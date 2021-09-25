@@ -23,10 +23,12 @@ const {creatControllertest1
 ,getoneControllertest1
 ,updateControllertest1
 ,deleteControllertest1
-,top2pricetest1} =require('./controller/test1.controller')
+,top2pricetest1
+,getcontrollerStats} =require('./controller/test1.controller')
 
 app.post('/create-test1',creatControllertest1)
 app.get('/get-test1',getallControllertest1)
+app.get('/stat-test1',getcontrollerStats)
 app.get('/getone-test1/:id',getoneControllertest1)
 app.patch('/update-test1/:id',updateControllertest1)
 app.delete('/delete-test1/:id',deleteControllertest1)
