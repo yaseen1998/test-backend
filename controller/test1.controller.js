@@ -252,7 +252,47 @@ const getcontrollerStats = async(req,res)=>{
         res.status(400).json({status:err,message:'fail'})
     }
 }
-
+const monthtest1=async(req,res)=>{
+    try{
+        const year = req.params.year * 1
+        const plan = await test1Model.aggregate([
+            {
+                $unwind:'$startdata'
+            },{
+            $match:{
+                startDates:{
+                    $gte: new Date(`${year}-01-01`),
+                    $lte:new Date(`${year}-13-31`)
+                }
+            }},{
+                $group:{
+                    _id:{$month:'$startDates'},
+                    numtest1:{$sum:1},
+                    test1:{$push:'$name'}
+                }
+            },{
+                $addFields:{month:'$_id'}
+            },{
+                $project:{
+                    _id:0
+                }
+            },{
+                $sort:{numtest:-1}
+            },{
+                $limit:5
+            }
+        ])
+        res.status(200).json({
+            status:'sucess',
+            result:test1.length,
+            data:{
+                test1
+            }
+    })// '/month-test/:year
+}catch(err){
+    res.status(400).json({status:err,message:'fail'})
+}
+}
 module.exports={creatControllertest1
     ,getallControllertest1
     ,getoneControllertest1
