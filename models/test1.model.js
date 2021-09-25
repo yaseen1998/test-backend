@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+// const validator = require('validator')
  
 const test1Schema =new mongoose.Schema({
     name:{

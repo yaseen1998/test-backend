@@ -26,6 +26,7 @@
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "jwks-rsa": "^2.0.4",
-    "mongoose": "^6.0.7"
+    "mongoose": "^6.0.7",
+    "validator": "^13.6.0"
   }
 }

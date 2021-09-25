@@ -36,6 +36,9 @@ app.get('/top2test1',top2pricetest1,getallControllertest1)
  
    
 
+const {userSignup}=require('./controller/users.controller')
+
+app.post('/create-user',userSignup)
 
 
 
