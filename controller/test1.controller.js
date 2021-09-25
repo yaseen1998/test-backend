@@ -218,18 +218,27 @@ const getcontrollerStats = async(req,res)=>{
      try{
          const stats = await test1Model.aggregate([
             //  {
-            //  $match:{price:{$gte:4.5}}
+            //  $match:{price:{$gte:4.5}} // remove the price has greater then 4.5
             //  },
              {
                  $group:{
-                    _id:null,
+                    // _id:null,
+                    // _id:'$rating',
+                    _id:{$toUpper:'$rating'},
                     avgprice:{$avg:'$price'},
                     minprice:{$min : '$price'},
                     maxprice:{$max : '$price'},
                     sumprice:{$sum:'$price'},
                     numprice:{$sum:1}
                  }
-             }
+                
+             }, {
+                $sort:{avgprice:-1} // sort the data from height ot small => -1 ,1
+            },
+            // {
+            //     $match:{_id:{$ne:'52'}}// remove the data equel 52
+            // }
+
          ]);
          res.status(200).json({
             status:'sucess',
