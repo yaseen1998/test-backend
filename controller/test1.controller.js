@@ -217,15 +217,17 @@ const features = new APIFeaturestest1(test1Model.find(),req.query)
 const getcontrollerStats = async(req,res)=>{
      try{
          const stats = await test1Model.aggregate([
-             {
-             $match:{price:{$gte:4.5}}
-             },
+            //  {
+            //  $match:{price:{$gte:4.5}}
+            //  },
              {
                  $group:{
                     _id:null,
                     avgprice:{$avg:'$price'},
                     minprice:{$min : '$price'},
-                    maxprice:{$max : '$price'}
+                    maxprice:{$max : '$price'},
+                    sumprice:{$sum:'$price'},
+                    numprice:{$sum:1}
                  }
              }
          ]);
