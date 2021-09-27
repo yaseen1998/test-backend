@@ -44,12 +44,17 @@ const user1Schema = new mongoose.Schema({
 //   next();
 // });
 
-// user1Schema.methods.correctPassword = async function (
-//   candidatepassword,
-//   userpassword
-// ) {
-//   return(await bcrypt.compare(candidatepassword,userpassword));
-// };
+// user1Schema.methods.correctPassword =  async function(JWTTimestamp,userpassword){
+//  await bcrypt.compare(userpassword, JWTTimestamp,  (err, res) => {
+//   // res == true or res == 
+//   if (err) 
+//     console.log(res);
+  
+  
+
+// })
+
+// ;}
 user1Schema.methods.cahngepasswordafter = function(JWTTimestamp){
   if(this.changepassword){
 const changestart = parseInt(this.changepassword.getTime()/1000,10)
