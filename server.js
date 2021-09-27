@@ -36,9 +36,12 @@ app.get('/top2test1',top2pricetest1,getallControllertest1)
  
    
 
-const {userSignup}=require('./controller/users.controller')
+const {userSignup,getUSer,userLogin,protectUser}=require('./controller/users.controller')
 
 app.post('/create-user',userSignup)
+// app.get('/get-user',protectUser,getUSer)
+app.get('/get-user',getUSer)
+app.post('/login-user',userLogin)
 
 
 
