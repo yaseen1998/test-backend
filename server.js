@@ -47,10 +47,11 @@ app.post('/login-user',userLogin)
 
 
 // server for exam 
-const {createFavExam,getAllfav,updateFavExam,deleteFavExam,getdata}= require("./controller/exam301")
+const {createFavExam,getAllfav,updateFavExam,deleteFavExam,getdata,editdata}= require("./controller/exam301")
 app.get("/getdata",getdata)
 app.post('/create-fav',createFavExam)
 app.get('/get-fav',getAllfav)
+app.get('/edit-fav',editdata)
 app.patch('/update-fav/:id',updateFavExam)
 app.delete('/delete-fav/:id',deleteFavExam)
 

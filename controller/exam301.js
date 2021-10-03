@@ -79,5 +79,25 @@ const updateFavExam=async(req,res)=>{
     }
 }
 
-module.exports = {createFavExam,getAllfav,updateFavExam,deleteFavExam,getdata}
+const editdata = async (req, res) => {
+    let cleandata=[]
+    let url =
+      "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic";
+    let drinks = await axios.get(url);
+//     for(let i =0;i<drinks.data.drinks.length;i++){
+//     cleandata.push(  exam301Model(drinks.data.drinks[i]))
+// }
+    let clean = drinks.data.drinks.map((item,index) => {
+        cleandata.push(exam301Model(item))
+        cleandata[index].save()
+    });
+    
+    res.status(200).json({
+      status: "sucess",
+      data: {
+        fav: cleandata,
+      },
+  })
+  };
+module.exports = {createFavExam,getAllfav,updateFavExam,deleteFavExam,getdata,editdata}
 
