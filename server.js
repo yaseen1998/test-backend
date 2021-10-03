@@ -36,7 +36,7 @@ app.get('/top2test1',top2pricetest1,getallControllertest1)
  
    
 
-const {userSignup,getUSer,userLogin,protectUser}=require('./controller/users.controller')
+const {userSignup,getUSer,userLogin,protectUser}=require('./controller/users.controller');
 
 app.post('/create-user',userSignup)
 // app.get('/get-user',protectUser,getUSer)
@@ -46,8 +46,14 @@ app.post('/login-user',userLogin)
 
 
 
+// server for exam 
+const {createFavExam,getAllfav,updateFavExam,deleteFavExam}= require("./controller/exam301")
+app.post('/create-fav',createFavExam)
+app.get('/get-fav',getAllfav)
+app.patch('/update-fav/:id',updateFavExam)
+app.delete('/delete-fav/:id',deleteFavExam)
 
-  app.listen(PORT, () => {
-    console.log(`listening to port ${PORT}`);
+  app.listen(8000, () => {
+    console.log(`listening to port 8000`);
   });
   
