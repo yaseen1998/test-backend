@@ -1,4 +1,22 @@
+const  axios  = require('axios');
 const {exam301Model} = require('../models/exam301')
+const Filter = require("./classFilter")
+
+
+
+const getdata = async(req,res)=>{
+    const data = await axios.get('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic')
+   const result = data.data.drinks.map(item=>{
+        return new Filter(
+            item
+        )})
+    
+   res.status(200).json({
+    status:'sucess',
+    data:result
+})
+}
+
 
 const createFavExam=async(req,res)=>{
 
@@ -61,5 +79,5 @@ const updateFavExam=async(req,res)=>{
     }
 }
 
-module.exports = {createFavExam,getAllfav,updateFavExam,deleteFavExam}
+module.exports = {createFavExam,getAllfav,updateFavExam,deleteFavExam,getdata}
 
