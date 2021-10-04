@@ -55,6 +55,18 @@ app.get('/edit-fav',editdata)
 app.patch('/update-fav/:id',updateFavExam)
 app.delete('/delete-fav/:id',deleteFavExam)
 
+
+// server for Fruit
+const {deleteFruit,updateFruit,getFruit,creatFruit,createuser,creatFruituser,updateFruituser} = require("./controller/fruitController")
+app.post("/create-fruit",creatFruit)
+app.get("/get-fruit",getFruit)
+app.patch("/update-fruit/:id",updateFruit)
+app.delete("/delete-fruit/:id",deleteFruit)
+app.post("/create-userfruit",createuser)
+app.patch("/create-fruituser/:id",creatFruituser)
+app.patch("/update-fruituser/:idu/:idf",updateFruituser)
+
+
   app.listen(8000, () => {
     console.log(`listening to port 8000`);
   });
