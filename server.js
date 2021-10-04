@@ -57,14 +57,17 @@ app.delete('/delete-fav/:id',deleteFavExam)
 
 
 // server for Fruit
-const {deleteFruit,updateFruit,getFruit,creatFruit,createuser,creatFruituser,updateFruituser} = require("./controller/fruitController")
+const {deleteFruit,updateFruit,getFruit,creatFruit,createuser,updateFruituser, getFruituser,deleteFruituser} = require("./controller/fruitController")
 app.post("/create-fruit",creatFruit)
 app.get("/get-fruit",getFruit)
 app.patch("/update-fruit/:id",updateFruit)
 app.delete("/delete-fruit/:id",deleteFruit)
-app.post("/create-userfruit",createuser)
-app.patch("/create-fruituser/:id",creatFruituser)
-app.patch("/update-fruituser/:idu/:idf",updateFruituser)
+
+
+app.post("/create-userfrui/:email",createuser)
+app.patch("/update-fruituser/:email/:idf",updateFruituser)
+app.patch("/delete-fruituser/:email/:idf",deleteFruituser)
+app.get("/get-fruituser/:email",getFruituser)
 
 
   app.listen(8000, () => {

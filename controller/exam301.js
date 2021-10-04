@@ -99,5 +99,6 @@ const editdata = async (req, res) => {
       },
   })
   };
+  
 module.exports = {createFavExam,getAllfav,updateFavExam,deleteFavExam,getdata,editdata}
 

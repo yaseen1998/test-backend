@@ -50,35 +50,61 @@ const getFruit= async(req,res)=>{
     }
     const createuser = async (req,res)=>{
         try{
-        const user = await userModel.create(req.body)
+            const checkuser = await userModel.exists({email:req.params.email})
+            if(!checkuser){
+        const user = await userModel.create({email:req.params.email})
+        user.fav.push(fruitModel(req.body))
+        user.save()
         res.status(200).json({
             data:user
-         })
-     }catch(err){
-         res.status(400).json({status:err})
-     }
-    }
-
-    const creatFruituser = async(req,res)=>{
-        try{
-            const getuser = await userModel.findById(req.params.id)
+         })}
+         else{
+            const getuser = await userModel.findOne({email:req.params.email})
             console.log(getuser);
         getuser.fav.push(fruitModel(req.body))
             getuser.save()
             res.status(200).json({
                data:getuser
             })
+         }
+     }catch(err){
+         res.status(400).json({status:err})
+     }
+    }
+
+    const updateFruituser = async(req,res)=>{
+        try{
+            const getuser = await userModel.findOne({email:req.params.email})
+            getuser.fav.map((item,index)=>{
+                if(item._id==req.params.idf){
+                    getuser.fav[index]=fruitModel(req.body)
+                }
+                getuser.save()
+            })
+            res.status(200).json({
+                data:getuser
+             })
         }catch(err){
             res.status(400).json({status:err})
         }
     }
-    const updateFruituser = async(req,res)=>{
+    const getFruituser = async(req,res)=>{
         try{
-            const getuser = await userModel.findById(req.params.idu)
+        const get = await userModel.findOne({email:req.params.email})
+        res.status(200).json({
+            data:get
+         })
+    }catch(err){
+        res.status(400).json({status:err})
+    }
+    }
+    const deleteFruituser = async(req,res)=>{
+        try{
+            const getuser = await userModel.findOne({email:req.params.email})
             getuser.fav.map((item,index)=>{
                 if(item._id==req.params.idf){
                     // console.log(item);
-                    getuser.fav[index]=fruitModel(req.body)
+                    getuser.fav.splice(index,1)
                     // console.log(item);
                 }
                 getuser.save()
@@ -91,4 +117,4 @@ const getFruit= async(req,res)=>{
             res.status(400).json({status:err})
         }
     }
-    module.exports={deleteFruit,updateFruit,getFruit,creatFruit,createuser,creatFruituser,updateFruituser}
+    module.exports={deleteFruit,updateFruit,getFruit,creatFruit,createuser,updateFruituser,getFruituser,deleteFruituser}
