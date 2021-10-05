@@ -10,7 +10,8 @@ app.use(express.json());
 
 
 const mongoose = require('mongoose')
-pp.get("/", (req, res) => {
+const PORT = process.env.PORT
+app.get("/", (req, res) => {
     res.status(200).json({ message: "I'm working" });
   });
   mongoose.connect(`mongodb+srv://yaseen_saeed:ya9981063722@cluster0.ulxvz.mongodb.net/test`,
@@ -69,7 +70,7 @@ app.patch("/delete-fruituser/:email/:idf",deleteFruituser)
 app.get("/get-fruituser/:email",getFruituser)
 
 
-  app.listen(8000, () => {
+  app.listen(PORT, () => {
     console.log(`listening to port 8000`);
   });
   
