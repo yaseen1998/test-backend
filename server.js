@@ -10,8 +10,7 @@ app.use(express.json());
 
 
 const mongoose = require('mongoose')
-const PORT = process.env.PORT
-app.get("/", (req, res) => {
+pp.get("/", (req, res) => {
     res.status(200).json({ message: "I'm working" });
   });
   mongoose.connect(`mongodb+srv://yaseen_saeed:ya9981063722@cluster0.ulxvz.mongodb.net/test`,
